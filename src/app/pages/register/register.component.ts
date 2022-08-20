@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
                         this.router.navigateByUrl('');
                         if (result.isConfirmed) {
                             localStorage.setItem("userName", response.userName),
-                                localStorage.setItem("token", response.token)
+                            localStorage.setItem("token", response.token)
                         }
 
                     })

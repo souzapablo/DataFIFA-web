@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
             text: "Login realizado com sucesso!",
             icon: 'success',
             confirmButtonText: 'Ok!'
-          }).then(response => {
-            this.router.navigateByUrl('matches')
-          })
+          }).then((result) => {
+            this.router.navigateByUrl('');
+        })
         }
       )
     }

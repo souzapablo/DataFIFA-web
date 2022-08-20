@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'matches/create',
     loadChildren: () => import('./pages/create-match/create-match.module').then(m => m.CreateMatchModule)
+  },
+  {
+    path: 'players',
+    loadChildren: () => import('./pages/player-list/player-list.module').then(m => m.PlayerListModule)
   }
 ];
 

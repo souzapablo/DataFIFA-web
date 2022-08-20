@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ICompetition } from '../../../shared/interfaces/ICompetition';
+import { ICompetition } from '../interfaces/ICompetition';
 
 @Injectable({
   providedIn: 'root'
