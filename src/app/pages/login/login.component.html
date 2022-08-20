@@ -1,0 +1,30 @@
+<div class="df-login">
+    <df-wrapper>
+        <form class="left" (submit)="login()" [formGroup]="loginForm">
+            <h1 class="main-title">
+                <span class="up">Bora jogar?</span>
+                <span class="down">Insira os dados para acesso.</span>
+            </h1>
+            <mat-form-field appearance="legacy">
+                <mat-label>Nome de usuário</mat-label>
+                <input matInput formControlName="userName">
+                <mat-error *ngIf="isInvalid('userName','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="isInvalid('userName','minlength')">{{ msg.min3 }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="isInvalid('password','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="isInvalid('password','minlength')">{{ msg.min8 }}</mat-error>
+            </mat-form-field>
+
+            <df-button text="Entrar">
+            </df-button>
+        </form>
+        <div class="right">
+            <img class="image" alt="Fundo de decoração com 3 cubos com fundo gradient das cores do arco-iris"
+                src="assets/image/bg-login.jpg">
+        </div>
+    </df-wrapper>
+</div>

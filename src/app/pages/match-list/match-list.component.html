@@ -1,0 +1,40 @@
+<div class="df-matchlist">
+    <df-wrapper type="one-col">
+        <div class="title-button">
+            <h1 class="title">Partidas</h1>
+            <df-button text="Nova partida" (click)="redirectTo('matches/create')"></df-button>
+        </div>
+
+        <div class="table-wrapper">
+
+            <df-loader text="Carregando partidas" *ngIf="isLoadingTable === true"></df-loader>
+
+            <div class="df-table" *ngIf="isLoadingTable === false">
+                <div class="head">
+                    <div class="row">
+                        <div>Adversário</div>
+                        <div>Em casa</div>
+                        <div>Ações</div>
+                    </div>
+                </div>
+                <div class="body" id="table-body">
+
+                    <div class="row" *ngFor="let match of matchList">
+                        <div class="title-description">
+                            <h6 class="title">{{ match.opponentName }}</h6>
+                            <p class="description">{{ match.competition }}</p>
+                        </div>
+                        <div class="price">{{ match.isHome }}</div>
+                        <div class="actions">
+                            <span class="edit material-icons"
+                                (click)="redirectToWithParams('matches',match.matchId)">edit</span>
+                            <span class="delete material-icons"
+                                (click)="deleteProject(match.matchId)">delete_outline</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </df-wrapper>
+</div>

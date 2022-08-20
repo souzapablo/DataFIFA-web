@@ -1,0 +1,13 @@
+.loading {
+    text-align: center;
+    color: var(--df-color-primary);
+    font-weight: 600;
+
+    >.text {
+        padding-top: 15px;
+    }   
+     
+    >mat-spinner {
+        margin: 0 auto;
+    }
+}

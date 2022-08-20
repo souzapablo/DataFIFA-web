@@ -1,0 +1,1 @@
+export type TDfWrapperCol = 'one-col' | 'two-col';

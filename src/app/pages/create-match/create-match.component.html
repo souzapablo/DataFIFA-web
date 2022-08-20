@@ -1,0 +1,49 @@
+<div class="df-create-match">
+    <df-wrapper back="matches">
+
+        <form class="left" submit="createOrEdit()" [formGroup]="createMatchForm">
+
+            <h1 class="main-title">Adicione uma nova partida</h1>
+
+            <mat-label>Adversário</mat-label>
+            <mat-select formControlName="opponentId" class="df-input">
+                <mat-option *ngFor="let opponent of opponents" [value]="opponent.opponentId">
+                    {{opponent.opponentName}}
+                </mat-option>
+            </mat-select>
+
+            <mat-label>Competição</mat-label>
+            <mat-select formControlName="competition" class="df-input">
+                <mat-option *ngFor="let competition of competitions" [value]="competition.competitionId">
+                    {{competition.competitionDescription}}
+                </mat-option>
+            </mat-select>
+
+            <mat-checkbox formControlName="isHome">
+                Em casa
+            </mat-checkbox>
+
+            <mat-form-field class="df-input" class="hide">
+                <input matInput formControlName="lineUp">
+                {{lineUp}}
+            </mat-form-field>
+
+            <df-button text="Criar" (click)="postMatch()"></df-button>
+        </form>
+        <div class="right">
+            <h3>Lista de jogadores</h3>
+            <form [formGroup]="createMatchForm">
+
+            </form>
+            <span class="example-list-section">
+                <ul>
+                    <li *ngFor="let player of players">
+                        <mat-checkbox (change)="addPlayer(player)">
+                            {{player.name}}
+                        </mat-checkbox>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </df-wrapper>
+</div>

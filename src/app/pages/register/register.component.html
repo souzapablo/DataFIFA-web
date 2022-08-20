@@ -1,0 +1,43 @@
+<div class="df-register">
+    <df-wrapper>
+        <form class="left" (submit)="cadastrar()" [formGroup]="registerForm">
+
+            <h1 class="main-title">
+                <span class="up">Olá!</span>
+                <span class="down">Vamos criar seu cadastro.</span>
+            </h1>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Nome de usuário</mat-label>
+                <input matInput formControlName="userName">
+                <mat-error *ngIf="isInvalid('userName','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="isInvalid('userName','minlength')">{{ msg.min3 }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="isInvalid('email','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="isInvalid('email','email')">{{ msg.email }}</mat-error>
+            </mat-form-field>  
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="isInvalid('password','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="isInvalid('password','minlength')">{{ msg.min8 }}</mat-error>
+            </mat-form-field>
+            
+
+            <df-button text="Continuar">
+                Continuar
+            </df-button>
+
+ 
+        </form>
+        <div class="right">
+            <img class="image" alt="Fundo de decoração com 3 cubos com fundo gradient das cores do arco-iris"
+                src="assets/image/bg-login.jpg">
+        </div>
+    </df-wrapper>
+</div>
