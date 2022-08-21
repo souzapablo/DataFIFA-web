@@ -1,1 +1,53 @@
-<p>player-list works!</p>
+<div class="df-player-list">
+
+    <df-wrapper type="one-col">
+        <div class="title-button">
+            <h1 class="title">Partidas</h1>
+            <df-button text="Registrar jogador"></df-button>
+        </div>
+        <div class="table-wrapper">
+
+            <df-loader text="Carregando jogadores" *ngIf="isLoadingTable === true"></df-loader>
+
+            <div class="df-table" *ngIf="isLoadingTable === false">
+                <div class="head">
+                    <div class="row">
+                        <div>#</div>
+                        <div>Nome</div>
+                        <div>Posição</div>
+                        <div>Overall</div>
+                        <div>Idade</div>
+                        <div>Ações</div>
+                    </div>
+                </div>
+                <div class="body" id="table-body">
+
+                    <div class="row" *ngFor="let player of playerList">
+                        <div class="number">
+                            <p class="number">{{ player.kitNumber }}</p>
+                        </div>
+                        <div class="name">
+                            <h6 class="value">{{ player.name }}</h6>
+                        </div>
+                        <div>
+                            <p class="position {{ player.position }}">{{ player.position }}</p>
+                        </div>
+                        <div class="overall">{{ player.overallRating }}</div>
+                        <div class="age">{{ player.age }}</div>
+                        <div class="actions">
+                            <span class="edit material-icons"
+                                (click)="redirectToWithParams('players',player.playerId)">info</span>
+
+                            <span class="delete material-icons" (click)="deletePlayer(player.playerId)">
+                                card_travel
+                            </span>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </df-wrapper>
+
+</div>
