@@ -1,0 +1,28 @@
+.df-home {
+
+
+    .cards {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .card {
+            width: 200px;
+            height: 150px;
+            background-color: var(--df-color-primary);
+            color: var(--df-color-gray-lightest);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 30px;
+            
+            >.icon {
+                    display: block;
+                    font-size: calc(var(--df-font-size-base) + 50px);
+                }
+        }
+    }
+
+}
