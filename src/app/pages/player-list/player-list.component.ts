@@ -31,6 +31,10 @@ export class PlayerListComponent implements OnInit {
       });
   }
 
+  redirectTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
   redirectToWithParams(url: string, id: number) {
     const dataParams: NavigationBehaviorOptions = {
       state: {

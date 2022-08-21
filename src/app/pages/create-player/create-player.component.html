@@ -1,0 +1,48 @@
+<div class="df-create-player">
+    <df-wrapper type="one-col" back="players">
+        <h1 class="title">Registrar jogador</h1>
+        <p class="subtitle">Insira os dados do jogador a ser registrado no time</p>
+
+        <form [formGroup]="createPlayerForm">
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="isInvalid('name','required')">{{ msg.required }}</mat-error>
+            </mat-form-field>
+            
+            <mat-label>Idade</mat-label>
+            <mat-slider   thumbLabel
+            tickInterval="5"
+            step="1"
+            min="15"
+            max="45"
+            aria-label="units" 
+            formControlName="age">Idade</mat-slider>
+
+            <mat-label>Overall</mat-label>
+            <mat-slider   thumbLabel
+            tickInterval="10"
+            step="1"
+            min="1"
+            max="99"
+            aria-label="units"
+            formControlName="overallRating">Idade</mat-slider>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Número da camiseta</mat-label>
+                <input matInput type="number" min="1" max="99" formControlName="kitNumber">
+                <mat-error *ngIf="isInvalid('kitNumber','required')">{{ msg.required }}</mat-error>
+            </mat-form-field>
+
+            <mat-label>Posição</mat-label>
+            <mat-select formControlName="position">
+                <mat-option *ngFor="let position of positions" [value]="position.positionId">
+                    {{ position.positionDescription }}
+                </mat-option>
+            </mat-select>
+
+            <df-button text="Registrar" (click)="createPlayer()"></df-button>
+        </form>
+    </df-wrapper>
+</div>

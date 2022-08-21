@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'players',
     loadChildren: () => import('./pages/player-list/player-list.module').then(m => m.PlayerListModule)
+  },
+  {
+    path: 'players/create',
+    loadChildren: () => import('./pages/create-player/create-player.module').then(m => m.CreatePlayerModule)
   }
 ];
 
