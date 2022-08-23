@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'career',
+    loadChildren: () => import('./pages/career/career.module').then(m => m.CareerModule)
   }
 ];
 

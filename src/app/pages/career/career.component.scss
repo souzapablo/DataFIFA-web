@@ -1,0 +1,53 @@
+.df-career {
+    .table-wrapper {
+        margin-top: 32px;
+        >.title-button {
+            font-weight: 800;
+            margin-top: 70px;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            >.title {
+                font-size: calc(var(--df-font-size-base) + 30px);
+                font-weight: 700;
+            }
+        }
+
+        >.create-button {
+            cursor: pointer;;
+        }
+
+        >.card {
+            display: flex;
+            flex-direction: row;
+            max-width: fit-content;
+            align-items: center;
+            >.items {
+                margin: 5px;
+                padding: 3px;
+
+                .title {
+                    font-weight: 600;
+                }
+
+                .last-change {
+                    font-weight: 100;
+                }
+            }
+            >.actions {
+                >.edit {
+                    color: var(--df-color-primary);
+                    margin-right: 5px;
+                    cursor: pointer;
+                    font-size: 26px;
+                }
+                .delete {
+                    color: var(--df-color-danger);
+                    cursor: pointer;
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+}
