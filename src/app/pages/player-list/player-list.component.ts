@@ -39,7 +39,6 @@ export class PlayerListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "true"){
-        this.redirectTo('career-created')
       } 
     });
   }

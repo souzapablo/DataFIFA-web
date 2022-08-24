@@ -30,7 +30,7 @@
 
             >.row {
                 display: grid;
-                grid-template-columns: 2fr 1fr 100px;
+                grid-template-columns: 2fr 1fr 1fr 100px;
                 padding-left: 32px;
                 padding-right: 32px;
                 align-items: center;
@@ -42,7 +42,7 @@
                 display: grid;
                 padding: 24px 32px;
                 align-items: center;
-                grid-template-columns: 2fr 1fr 100px;
+                grid-template-columns: 2fr 1fr 1fr 100px;
                 border-bottom: 1px solid var(--df-color-gray-lighter);
 
                 >.title-description {

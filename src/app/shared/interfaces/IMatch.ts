@@ -3,4 +3,5 @@
         isHome: boolean;
         opponentName: string;
         competition: string;
+        score: string;
     }

@@ -1,12 +1,16 @@
-<div class="df-create-match">
-    <df-wrapper back="matches">
-
+<div class="df-match-dialog">
+    <mat-dialog-actions>
+        <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
+    </mat-dialog-actions>
+    <h2 mat-dialog-title class="title">Criar partida</h2>
+    <mat-dialog-content class="main-content">
         <form class="left" submit="createOrEdit()" [formGroup]="createMatchForm">
-
-            <h1 class="main-title">Adicione uma nova partida</h1>
 
             <mat-label>Adversário</mat-label>
             <mat-select formControlName="opponentId" class="df-input">
+                <mat-option mat-dialog-close (click)="redirectTo('home')">
+                    Adicionar novo
+                </mat-option>
                 <mat-option *ngFor="let opponent of opponents" [value]="opponent.opponentId">
                     {{opponent.opponentName}}
                 </mat-option>
@@ -27,8 +31,6 @@
                 <input matInput formControlName="lineUp">
                 {{lineUp}}
             </mat-form-field>
-
-            <df-button text="Criar" (click)="postMatch()"></df-button>
         </form>
         <div class="right">
             <h3>Lista de jogadores</h3>
@@ -45,5 +47,9 @@
                 </ul>
             </span>
         </div>
-    </df-wrapper>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <df-button [small]=true (click)="postMatch()" text="Criar" mat-button mat-dialog-close mat-dialog-close="true">
+        </df-button>
+    </mat-dialog-actions>
 </div>

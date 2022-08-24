@@ -15,10 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/match-list/match-list.module').then(m => m.MatchListModule)
   },
   {
-    path: 'matches/create',
-    loadChildren: () => import('./pages/create-match/create-match.module').then(m => m.CreateMatchModule)
-  },
-  {
     path: 'players',
     loadChildren: () => import('./pages/player-list/player-list.module').then(m => m.PlayerListModule)
   },

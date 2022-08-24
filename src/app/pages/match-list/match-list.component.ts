@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
 import { IMatch } from '../../shared/interfaces/IMatch';
 import { MatchService } from '../../shared/services/match.service';
+import { DialogCreateMatchComponent } from './dialog-create-match/dialog-create-match.component';
 
 @Component({
   selector: 'app-match-list',
@@ -10,7 +12,8 @@ import { MatchService } from '../../shared/services/match.service';
 })
 export class MatchListComponent implements OnInit {
 
-  constructor(private matchService: MatchService, private router: Router) { }
+  constructor(private matchService: MatchService, private router: Router,
+    public dialog: MatDialog) { }
 
   matchList: IMatch[] = [];
   isLoadingTable: boolean = true;
@@ -28,16 +31,21 @@ export class MatchListComponent implements OnInit {
     )
   }
 
-  goToEdit(id: number | undefined) {
-    window.location.href = `project-create-edit.html?id=${id}`;
-  }
-
-  deleteProject(matchId: number) {
+  deleteMatch(matchId: number) {
     this.matchService.deleteMatch(matchId).subscribe(
       (response) => {
         this.matchList = this.matchList.filter((match: IMatch) => match.matchId != matchId);
       }
     )
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogCreateMatchComponent, {data: {id: 1}})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "true"){
+      } 
+    });
   }
 
   redirectTo(url: string) {

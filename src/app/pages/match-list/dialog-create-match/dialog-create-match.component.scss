@@ -1,0 +1,52 @@
+.df-match-dialog {
+    padding: 25px;
+
+    .close {
+        cursor: pointer;
+        color: var(--df-color-gray-lightest);
+        text-decoration: none;
+        background: var(--df-color-danger);
+        border-radius: 50%;
+        border: none;
+    }
+    >.title {
+        font-size: calc(var(--df-font-size-base) + 15px);
+        font-weight: 700;
+    }
+
+    >.main-content {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        >.left {
+            max-width: 368px;
+            margin: auto;
+            >.main-title {
+                font-size: calc(var(--df-font-size-base) + 32px);
+                font-weight: 800;
+                max-width: 415px;
+                margin-bottom: 40px;
+            }
+            >.df-button {
+                margin-top: 40px;
+            }
+    
+            >.hide {
+                display: none;
+            }
+        }
+
+        >.right {
+            margin: auto;
+        }
+    }
+    
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+}
