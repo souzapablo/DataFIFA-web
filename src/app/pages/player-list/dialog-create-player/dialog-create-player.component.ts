@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IPosition } from 'src/app/shared/interfaces/IPosition';
 import { PlayerService } from 'src/app/shared/services/player.service';
 import { msg } from 'src/app/shared/utils/msg';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-create-player',
-  templateUrl: './create-player.component.html',
-  styleUrls: ['./create-player.component.scss']
+  selector: 'app-dialog-create-player',
+  templateUrl: './dialog-create-player.component.html',
+  styleUrls: ['./dialog-create-player.component.scss']
 })
-export class CreatePlayerComponent implements OnInit {
+export class DialogCreatePlayerComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private playerService: PlayerService,
-    private router: Router) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
+  private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.getValues();
   }
-
+  
   msg = msg;
   positions: IPosition[] = [];
 
@@ -28,7 +28,8 @@ export class CreatePlayerComponent implements OnInit {
     age: [15, [Validators.required]],
     overallRating: [1, [Validators.required]],
     kitNumber: [1, Validators.required],
-    position: [0, Validators.required]
+    position: [0, Validators.required],
+    teamId: [this.data.id]
   });
 
   createPlayer() {
@@ -42,8 +43,6 @@ export class CreatePlayerComponent implements OnInit {
             text: "Jogador registrado com sucesso!",
             icon: 'success',
             confirmButtonText: 'Ok!'
-          }).then(response => {
-            this.router.navigateByUrl('players')
           })
         }
       )

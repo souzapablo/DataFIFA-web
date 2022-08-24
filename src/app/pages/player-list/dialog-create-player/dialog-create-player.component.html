@@ -1,8 +1,9 @@
-<div class="df-create-player">
-    <df-wrapper type="one-col" back="players">
-        <h1 class="title">Registrar jogador</h1>
-        <p class="subtitle">Insira os dados do jogador a ser registrado no time</p>
-
+<div class="df-player-dialog">
+    <mat-dialog-actions>
+        <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
+    </mat-dialog-actions>
+    <h2 mat-dialog-title class="title">Criar careeira</h2>
+    <mat-dialog-content>
         <form [formGroup]="createPlayerForm">
 
             <mat-form-field appearance="legacy">
@@ -42,7 +43,10 @@
                 </mat-option>
             </mat-select>
 
-            <df-button text="Registrar" (click)="createPlayer()"></df-button>
         </form>
-    </df-wrapper>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <df-button [small]=true (click)="createPlayer()" text="Criar" mat-button mat-dialog-close mat-dialog-close="true">
+        </df-button>
+    </mat-dialog-actions>
 </div>

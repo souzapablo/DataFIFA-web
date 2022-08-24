@@ -23,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/player-list/player-list.module').then(m => m.PlayerListModule)
   },
   {
-    path: 'players/create',
-    loadChildren: () => import('./pages/create-player/create-player.module').then(m => m.CreatePlayerModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },

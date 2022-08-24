@@ -5,4 +5,5 @@ export interface IPlayer {
     name: string;
     overallRating: number;
     age: number;
+    teamId: number
 }

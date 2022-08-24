@@ -5,7 +5,7 @@ import { CareerService } from './services/career.service';
 import { MatDialog
  } from '@angular/material/dialog';
 import { DialogCreateCareerComponent } from './dialog-create-career/dialog-create-career.component';
-import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-career',
   templateUrl: './career.component.html',

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
 import { IPlayer } from 'src/app/shared/interfaces/IPlayer';
 import { PlayerService } from 'src/app/shared/services/player.service';
+import { DialogCreatePlayerComponent } from './dialog-create-player/dialog-create-player.component';
 
 @Component({
   selector: 'app-player-list',
@@ -10,10 +12,11 @@ import { PlayerService } from 'src/app/shared/services/player.service';
 })
 export class PlayerListComponent implements OnInit {
 
-  constructor(private router: Router, private playerService: PlayerService) { }
+  constructor(private router: Router, public dialog: MatDialog,
+    private playerService: PlayerService) { }
 
   ngOnInit(): void {
-    this.getPlayer();
+    this.getPlayers();
   }
 
   isLoadingTable: boolean = true;
@@ -23,12 +26,22 @@ export class PlayerListComponent implements OnInit {
 
   }
 
-  getPlayer() {
-    this.playerService.getAllPlayers().subscribe(
+  getPlayers() {
+    this.playerService.getPlayersByTeamId(1).subscribe(
       (response: IPlayer[]) => {
         this.playerList = response;
         this.isLoadingTable = false;
       });
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogCreatePlayerComponent, {data: {id: 1}})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "true"){
+        this.redirectTo('career-created')
+      } 
+    });
   }
 
   redirectTo(url: string) {

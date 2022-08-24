@@ -15,6 +15,10 @@ export class PlayerService {
     return this.http.get<IPlayer[]>(`${environment.apiUrl}/players`);
   }
 
+  getPlayersByTeamId(teamId: number) {
+    return this.http.get<IPlayer[]>(`${environment.apiUrl}/players/team/${teamId}`);
+  }
+
   getPostitions() {
     return this.http.get<IPosition[]>(`${environment.apiUrl}/players/player-positions`);
   }
