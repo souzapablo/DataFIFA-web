@@ -1,0 +1,43 @@
+<div class="df-opponents">
+    <df-wrapper [type]="'one-col'" [back]="'matches'">
+        <div class="table-wrapper">
+            <div class="title-button">
+                <h1 class="title">Adversários</h1>
+                <df-button text="Novo adversário" (click)="openDialog()"></df-button>
+            </div>
+            <df-loader text="Carregando adversários" *ngIf="isLoadingTable === true"></df-loader>
+
+            <div class="df-table" *ngIf="isLoadingTable === false">
+                <div class="head">
+                    <div class="row">
+                        <div>Adversário</div>
+                        <div></div>
+                        <div>Partidas contra</div>
+                        <div>Ações</div>
+                    </div>
+                </div>
+                <div class="body" id="table-body">
+
+                    <div class="row" *ngFor="let opponent of opponents">
+                        <div class="opponent-name">
+                            <h6 class="name">{{ opponent.opponentName }}</h6>
+                        </div>
+                        <div class="logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/800px-Arsenal_FC.svg.png">
+                        </div>
+                        <div class="played-against">{{ opponent.playedAgainst }}</div>
+                        <div class="actions">
+                            <span class="edit material-icons"
+                                >edit</span>
+                            <span class="delete material-icons"
+                                >delete_outline</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </df-wrapper> 
+</div>

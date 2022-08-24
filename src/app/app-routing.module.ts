@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'career',
     loadChildren: () => import('./pages/career/career.module').then(m => m.CareerModule)
+  },
+  {
+    path: 'opponents',
+    loadChildren: () => import('./pages/opponent/opponent.module').then(m => m.OpponentModule)
   }
 ];
 
