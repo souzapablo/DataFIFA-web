@@ -8,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DfButtonComponent implements OnInit {
 
   @Input() text: string = '';
-
+  @Input() small: boolean = false;
+  
   constructor() { }
 
   ngOnInit(): void {

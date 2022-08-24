@@ -1,0 +1,23 @@
+.df-career-dialog {
+    padding: 25px;
+
+    .close {
+        cursor: pointer;
+        color: var(--df-color-gray-lightest);
+        text-decoration: none;
+        background: var(--df-color-danger);
+        border-radius: 50%;
+        border: none;
+    }
+
+    >.title {
+        font-size: calc(var(--df-font-size-base) + 15px);
+        font-weight: 700;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

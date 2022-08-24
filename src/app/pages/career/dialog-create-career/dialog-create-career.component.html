@@ -1,0 +1,39 @@
+<div class="df-career-dialog">
+    <mat-dialog-actions>
+        <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
+    </mat-dialog-actions>
+    <h2 mat-dialog-title class="title">Criar careeira</h2>
+    <mat-dialog-content>
+        <form [formGroup]="createCareerForm">
+            <div class="inputs">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome do treinador</mat-label>
+                    <input matInput formControlName="managerName">
+                    <mat-error *ngIf="isInvalid('managerName','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome do time</mat-label>
+                    <input matInput formControlName="teamName">
+                    <mat-error *ngIf="isInvalid('teamName','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome do estádio</mat-label>
+                    <input matInput formControlName="teamStadium">
+                    <mat-error *ngIf="isInvalid('teamStadium','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="legacy">
+                    <mat-label>Logo do time</mat-label>
+                    <input matInput formControlName="teamLogoURl">
+                    <mat-error *ngIf="isInvalid('teamLogoURl','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <df-button [small]=true (click)="createCareer()" text="Criar" mat-button mat-dialog-close mat-dialog-close="true">
+        </df-button>
+    </mat-dialog-actions>
+</div>

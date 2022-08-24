@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
 import { ICareer } from './interfaces/ICareer';
 import { CareerService } from './services/career.service';
-
+import { MatDialog
+ } from '@angular/material/dialog';
+import { DialogCreateCareerComponent } from './dialog-create-career/dialog-create-career.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-career',
   templateUrl: './career.component.html',
@@ -10,7 +13,8 @@ import { CareerService } from './services/career.service';
 })
 export class CareerComponent implements OnInit {
 
-  constructor(private careerService: CareerService, private router: Router) { }
+  constructor(private careerService: CareerService, private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getUserCareers()
@@ -36,8 +40,14 @@ export class CareerComponent implements OnInit {
     );
   }
 
-  createCareer() {
-    alert("clicou")
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogCreateCareerComponent, {data: {id: 1}})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "true"){
+        this.redirectTo('career-created')
+      } 
+    });
   }
 
   redirectTo(url: string) {
@@ -45,6 +55,13 @@ export class CareerComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
+  reloadCurrentPage(){
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigate([currentUrl]);
+    });
+  }
+  
   redirectToWithParams(url: string, id: number) {
     const dataParams: NavigationBehaviorOptions = {
       state: {

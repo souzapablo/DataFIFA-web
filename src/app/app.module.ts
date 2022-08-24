@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { DialogCreateCareerComponent } from './pages/career/dialog-create-career/dialog-create-career.component';
 
 registerLocaleData(localePT);
 
@@ -13,6 +14,7 @@ registerLocaleData(localePT);
   declarations: [
     AppComponent
   ],
+  entryComponents: [DialogCreateCareerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

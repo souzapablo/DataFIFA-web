@@ -5,24 +5,26 @@
 
             <div class="title-button">
                 <span class="title">Continuar progresso</span>
-                <df-button text="Nova carreira" (click)="redirectTo('matches/create')"></df-button>
+                <df-button mat-raised-button text="Nova carreira" (click)="openDialog()"></df-button>
             </div>
 
             <df-loader text="Carregando carreiras" *ngIf="isLoadingTable === true"></df-loader>
 
-            <mat-card class="card" *ngFor="let career of careers">
-                <div class="items">
-                    <p><span class="title">Manager:</span>  {{ career.managerName }}</p>
-                    <p><span class="title">Time atual:</span> {{ career.currentTeamName }}</p>
-                    <p class="last-change">({{ career.lastChange | date : 'mediumDate' : '' : 'pt-BR'}})</p>
-                </div>
-                <div class="actions">
-                    <span class="edit material-icons"
-                        (click)="redirectToWithParams('career', career.careerId)">play_circle_filled</span>
-                    <span class="delete material-icons"
-                    (click)="deleteCareer(career.careerId)">delete_outline</span>
-                </div>
-            </mat-card>
+            <div class="card-container">
+                <mat-card class="card" *ngFor="let career of careers">
+                    <div class="items">
+                        <p><span class="title">Manager:</span>  {{ career.managerName }}</p>
+                        <p><span class="title">Time atual:</span> {{ career.currentTeamName }}</p>
+                        <p class="last-change">({{ career.lastChange | date : 'mediumDate' : '' : 'pt-BR'}})</p>
+                    </div>
+                    <div class="actions">
+                        <span class="edit material-icons"
+                            (click)="redirectToWithParams('career', career.careerId)">play_circle_filled</span>
+                        <span class="delete material-icons"
+                        (click)="deleteCareer(career.careerId)">delete_outline</span>
+                    </div>
+                </mat-card>
+            </div>
 
         </div>
     </df-wrapper>
