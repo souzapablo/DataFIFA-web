@@ -1,5 +1,5 @@
 <div class="df-opponents">
-    <df-wrapper [type]="'one-col'" [back]="'matches'">
+    <df-wrapper [type]="'one-col'" [back]="'home'">
         <div class="table-wrapper">
             <div class="title-button">
                 <h1 class="title">Adversários</h1>
@@ -19,12 +19,13 @@
                 <div class="body" id="table-body">
 
                     <div class="row" *ngFor="let opponent of opponents">
+                        <div class="logo">
+                            <img [src]="opponent.opponentLogoUrl">
+                        </div>
                         <div class="opponent-name">
                             <h6 class="name">{{ opponent.opponentName }}</h6>
                         </div>
-                        <div class="logo">
-                            <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/800px-Arsenal_FC.svg.png">
-                        </div>
+
                         <div class="played-against">{{ opponent.playedAgainst }}</div>
                         <div class="actions">
                             <span class="edit material-icons"

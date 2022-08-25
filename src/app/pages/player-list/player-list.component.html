@@ -1,12 +1,12 @@
 <div class="df-player-list">
 
     <df-wrapper type="one-col" back="home">
-        <div class="title-button">
-            <h1 class="title">Partidas</h1>
-            <df-button text="Registrar jogador" (click)="openDialog()"></df-button>
-        </div>
-        <div class="table-wrapper">
 
+        <div class="table-wrapper">
+            <div class="title-button">
+                <h1 class="title">Jogadores</h1>
+                <df-button text="Registrar jogador" (click)="openDialog()"></df-button>
+            </div>
             <df-loader text="Carregando jogadores" *ngIf="isLoadingTable === true"></df-loader>
 
             <div class="df-table" *ngIf="isLoadingTable === false">

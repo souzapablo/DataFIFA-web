@@ -1,15 +1,17 @@
 <div class="df-matchlist">
-    <df-wrapper type="one-col" back="home">
-        <div class="title-button">
-            <h1 class="title">Partidas</h1>
-            <df-button text="Nova partida" (click)="openDialog()"></df-button>
-        </div>
+    <df-wrapper [type]="'one-col'" back="home">
 
         <div class="table-wrapper">
+
+            <div class="title-button">
+                <h1 class="title">Partidas</h1>
+                <df-button text="Nova partida" (click)="openDialog()"></df-button>
+            </div>
 
             <df-loader text="Carregando partidas" *ngIf="isLoadingTable === true"></df-loader>
 
             <div class="df-table" *ngIf="isLoadingTable === false">
+
                 <div class="head">
                     <div class="row">
                         <div>Adversário</div>
@@ -18,15 +20,20 @@
                         <div>Ações</div>
                     </div>
                 </div>
+
                 <div class="body" id="table-body">
 
                     <div class="row" *ngFor="let match of matchList">
-                        <div class="title-description">
-                            <h6 class="title">{{ match.opponentName }}</h6>
-                            <p class="description">{{ match.competition }}</p>
+
+                        <div class="name-competition">
+                            <h6 class="name">{{ match.opponentName }}</h6>
+                            <p class="competiton">{{ match.competition }}</p>
                         </div>
-                        <div class="price">{{ match.isHome }}</div>
+
+                        <div class="ishome">{{ match.isHome }}</div>
+
                         <div class="score">{{ match.score }}</div>
+
                         <div class="actions">
                             <span class="edit material-icons"
                                 >edit</span>
@@ -34,7 +41,6 @@
                                 (click)="deleteMatch(match.matchId)">delete_outline</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

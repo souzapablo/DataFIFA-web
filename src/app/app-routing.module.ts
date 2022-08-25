@@ -7,15 +7,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'register',
+    path: 'cadastrar',
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule),
   },
   {
-    path: 'matches',
+    path: 'partidas',
     loadChildren: () => import('./pages/match-list/match-list.module').then(m => m.MatchListModule)
   },
   {
-    path: 'players',
+    path: 'jogadores',
     loadChildren: () => import('./pages/player-list/player-list.module').then(m => m.PlayerListModule)
   },
   {
@@ -23,11 +23,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'career',
+    path: 'carreiras',
     loadChildren: () => import('./pages/career/career.module').then(m => m.CareerModule)
   },
   {
-    path: 'opponents',
+    path: 'adversarios',
     loadChildren: () => import('./pages/opponent/opponent.module').then(m => m.OpponentModule)
   }
 ];

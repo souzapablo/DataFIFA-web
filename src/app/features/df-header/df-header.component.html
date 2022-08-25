@@ -1,11 +1,9 @@
 <header class="df-header">
 
-    <!-- SIMPLES -->
     <div class="wrapper" *ngIf="!checkIfUserIsLogged()">
         <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
     </div>
 
-    <!-- COMPLETO -->
     <div class="wrapper -has-user" *ngIf="checkIfUserIsLogged()">
         <div></div>
 
@@ -23,7 +21,6 @@
     </div>
 </header> 
 
-<!-- TEMPLATE - logo -->
 <ng-template #logoTemplate>
     <div class="logo-wrapper">
         <img alt="Logo DataFIFA" class="image" src="assets/logo/df.svg">

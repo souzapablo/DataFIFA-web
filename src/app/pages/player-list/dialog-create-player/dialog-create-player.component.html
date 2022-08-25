@@ -2,51 +2,48 @@
     <mat-dialog-actions>
         <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
     </mat-dialog-actions>
-    <h2 mat-dialog-title class="title">Criar careeira</h2>
+    <h2 mat-dialog-title class="title">Criar joador</h2>
     <mat-dialog-content>
         <form [formGroup]="createPlayerForm">
+            <div class="inputs">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="name">
+                    <mat-error *ngIf="isInvalid('name','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
 
-            <mat-form-field appearance="legacy">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="name">
-                <mat-error *ngIf="isInvalid('name','required')">{{ msg.required }}</mat-error>
-            </mat-form-field>
-            
-            <mat-label>Idade</mat-label>
-            <mat-slider   thumbLabel
-            tickInterval="5"
-            step="1"
-            min="15"
-            max="45"
-            aria-label="units" 
-            formControlName="age">Idade</mat-slider>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Idade</mat-label>
+                    <input matInput type="number" min="15" max="45" formControlName="age">
+                    <mat-error *ngIf="isInvalid('age','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
 
-            <mat-label>Overall</mat-label>
-            <mat-slider   thumbLabel
-            tickInterval="10"
-            step="1"
-            min="1"
-            max="99"
-            aria-label="units"
-            formControlName="overallRating">Idade</mat-slider>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Overall</mat-label>
+                    <input matInput type="number" min="1" max="99" formControlName="overallRating">
+                    <mat-error *ngIf="isInvalid('overallRating','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
 
-            <mat-form-field appearance="legacy">
-                <mat-label>Número da camiseta</mat-label>
-                <input matInput type="number" min="1" max="99" formControlName="kitNumber">
-                <mat-error *ngIf="isInvalid('kitNumber','required')">{{ msg.required }}</mat-error>
-            </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Número da camiseta</mat-label>
+                    <input matInput type="number" min="1" max="99" formControlName="kitNumber">
+                    <mat-error *ngIf="isInvalid('kitNumber','required')">{{ msg.required }}</mat-error>
+                </mat-form-field>
 
-            <mat-label>Posição</mat-label>
-            <mat-select formControlName="position">
-                <mat-option *ngFor="let position of positions" [value]="position.positionId">
-                    {{ position.positionDescription }}
-                </mat-option>
-            </mat-select>
+                <mat-label>Posição</mat-label>
+                <mat-select formControlName="position">
+                    <mat-option *ngFor="let position of positions" [value]="position.positionId">
+                        {{ position.positionDescription }}
+                    </mat-option>
+                </mat-select>
+            </div>
+
 
         </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <df-button [small]=true (click)="createPlayer()" text="Criar" mat-button mat-dialog-close mat-dialog-close="true">
+        <df-button [small]=true (click)="createPlayer()" text="Criar" mat-button mat-dialog-close
+            mat-dialog-close="true">
         </df-button>
     </mat-dialog-actions>
 </div>

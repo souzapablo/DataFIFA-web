@@ -36,7 +36,7 @@ export class OpponentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "true"){
-        this.router.navigateByUrl('matches');
+        this.router.navigateByUrl('partidas');
       } 
     });
   }
