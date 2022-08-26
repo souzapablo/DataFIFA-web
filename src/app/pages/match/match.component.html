@@ -1,0 +1,76 @@
+<div class="df-match">
+
+    <df-wrapper [type]="'one-col'">
+        <div class="match-details">
+
+            <div class="header">
+
+                <div class="stadium">
+                    <div class="stadium-content">
+                        <span class="material-icons">
+                            stadium
+                        </span>
+                        {{ match.stadium }}
+                    </div>
+                </div>
+
+                <div class="home-stadium">
+                    <div class="team">{{ homeTeam }}</div>
+                    <div class="logo"><img [src]="homeLogo"></div>
+                </div>
+
+                <div class="score">
+                    {{ match.score }}
+                    <div class="add-goal">
+                        <button (click)="opponentGoals(true)">+</button>
+                        <span class="material-icons">sports_soccer</span>
+                        <button (click)="opponentGoals(false)">-</button>
+                    </div>
+                </div>
+                <div class="away-teamName">
+                    <div class="logo"><img [src]="awayLogo"></div>
+                    <div>{{ awayTeam }}</div>
+                </div>
+
+                <div class="competition">
+                    <div class="text"> {{ match.competition }}</div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="lineup">
+                    <div class="title">
+                        <div>Escalação</div>
+                        <div>
+                            <span (click)="alert()" class="material-icons substitution">change_circle</span>
+                        </div>
+                    </div>
+                    <div class="players">
+                        <p class="player" *ngFor="let player of match.lineUp">
+                            {{player}}
+                        </p>
+                    </div>
+                    <div class="substitution">
+                        
+                    </div>
+                </div>
+                <div class="goals">
+                    <div class="title">
+                        Informações importantes
+                    </div>
+                    <div class="info" *ngFor="let goal of match.matchGoals">
+                        <span class="material-icons">
+                            sports_soccer 
+                        </span> {{ goal.playerScored }}
+                        <p class="assist" *ngIf="goal.playerAssisted !== null"> <span class="material-icons">
+                                handshake
+                            </span> {{ goal.playerAssisted }}</p>
+                    </div>
+                    <df-button text="Adicionar gol" [small]="true"></df-button>
+                </div>
+            </div>
+        </div>
+
+    </df-wrapper>
+
+</div>

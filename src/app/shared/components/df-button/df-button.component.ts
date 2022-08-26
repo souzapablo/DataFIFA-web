@@ -9,6 +9,7 @@ export class DfButtonComponent implements OnInit {
 
   @Input() text: string = '';
   @Input() small: boolean = false;
+  @Input() light: boolean = false;
   
   constructor() { }
 

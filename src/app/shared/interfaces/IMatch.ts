@@ -4,4 +4,5 @@
         opponentName: string;
         competition: string;
         score: string;
+        teamId: number;
     }

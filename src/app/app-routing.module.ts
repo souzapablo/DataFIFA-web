@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'adversarios',
     loadChildren: () => import('./pages/opponent/opponent.module').then(m => m.OpponentModule)
+  },
+  {
+    path: 'partida',
+    loadChildren: () => import('./pages/match/match.module').then(m => m.MatchModule)
   }
 ];
 

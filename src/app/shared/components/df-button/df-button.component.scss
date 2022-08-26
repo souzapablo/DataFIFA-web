@@ -18,6 +18,15 @@
         padding: 12px 27px;
     }
 
+    &.-light {
+        color: var(--df-color-gray-dark);
+        background-color: var(--df-color-gray-lightest);
+
+        &:hover {
+            background-color: var(--df-color-gray-light);
+        }
+    }
+
     &:hover {
         background-color: var(--df-color-primary-light);
     }

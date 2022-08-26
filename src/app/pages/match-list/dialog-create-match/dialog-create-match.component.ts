@@ -29,7 +29,8 @@ export class DialogCreateMatchComponent implements OnInit {
     competition: [4, Validators.required],
     opponentId: [0, Validators.required],
     lineUpId: [this.lineUp, Validators.required],
-    isHome: [false]
+    isHome: [false],
+    teamId: 1
   })
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
