@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IMatchDetails } from 'src/app/shared/interfaces/IMatchDetails';
 import { IOpponentGoals } from 'src/app/shared/interfaces/IOpponentGoals';
 import { MatchService } from 'src/app/shared/services/match.service';
+import { DialogSubstitutionComponent } from './dialog-substitution/dialog-substitution.component';
 
 @Component({
   selector: 'app-match',
@@ -10,7 +12,7 @@ import { MatchService } from 'src/app/shared/services/match.service';
 })
 export class MatchComponent implements OnInit {
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getMatch(2);
@@ -21,6 +23,7 @@ export class MatchComponent implements OnInit {
   homeLogo: string = '';
   awayTeam: string = '';
   awayLogo: string = '';
+  matchIdp: number = 2;
 
   getMatch(matchId: number) {
     this.matchService.getById(matchId).subscribe(
@@ -49,14 +52,20 @@ export class MatchComponent implements OnInit {
       opponentScored: state
     }
 
-    this.matchService.patchOpponentGoals(2, payload).subscribe(
+    this.matchService.patchOpponentGoals(this.matchIdp, payload).subscribe(
       (response) => {
-        this.getMatch(2);
+        this.getMatch(this.matchIdp);
       }
     );
   }
 
-  alert() {
-    alert()
+  substitutionDialog() {
+    let dialogRef = this.dialog.open(DialogSubstitutionComponent, {data: {id: this.matchIdp}})
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "true") {
+        
+      }
+    })
   }
 }

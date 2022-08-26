@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { IMatch } from '../interfaces/IMatch';
 import { IMatchDetails } from '../interfaces/IMatchDetails';
 import { IOpponentGoals } from '../interfaces/IOpponentGoals';
+import { IPlayer } from '../interfaces/IPlayer';
+import { ISubstitution } from '../interfaces/ISubstitution';
 
 
 @Injectable({
@@ -32,5 +34,13 @@ export class MatchService {
 
   patchOpponentGoals(matchId: number, payload: IOpponentGoals) {
     return this.http.patch(`${environment.apiUrl}/matches/${matchId}/opponent-goal`, payload)
+  }
+
+  getPlayersForSubstitution(teamId: number, matchId:number) {
+    return this.http.get<IPlayer[]>(`${environment.apiUrl}/matches/${teamId}/${matchId}/substitution`)
+  }
+
+  patchSubstitution(matchId: number, paylod: ISubstitution) {
+    return this.http.patch(`${environment.apiUrl}/matches/${matchId}/substitution`, paylod);
   }
 }

@@ -10,7 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogCreateCareerComponent } from './dialog-create-career/dialog-create-career.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
