@@ -133,4 +133,18 @@
             }
         }
     }
+
+    .finish {
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px 35px;
+        span {
+            font-size: calc(var(--df-font-size-base) + 48px);
+            cursor: pointer;
+            &.finished {
+                color: green;
+            }
+        
+        }
+    }
 }

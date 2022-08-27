@@ -5,4 +5,5 @@
         competition: string;
         score: string;
         teamId: number;
+        hasEnded: boolean;
     }

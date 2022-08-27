@@ -1,6 +1,6 @@
 <div class="df-match">
 
-    <df-wrapper [type]="'one-col'">
+    <df-wrapper [type]="'one-col'" back="partidas">
         <div class="match-details">
 
             <div class="header">
@@ -21,8 +21,8 @@
 
                 <div class="score">
                     {{ match.score }}
-                    <div class="add-goal">
-                        <button (click)="opponentGoals(true)">+</button>
+                    <div *ngIf="!isFinished" class="add-goal">
+                        <button  (click)="opponentGoals(true)">+</button>
                         <span class="material-icons">sports_soccer</span>
                         <button (click)="opponentGoals(false)">-</button>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="title">
                         <div>Escalação</div>
                         <div>
-                            <span (click)="substitutionDialog()" class="material-icons substitution">change_circle</span>
+                            <span *ngIf="!isFinished" (click)="substitutionDialog()" class="material-icons substitution">change_circle</span>
                         </div>
                     </div>
                     <div class="players">
@@ -66,11 +66,14 @@
                                 handshake
                             </span> {{ goal.playerAssisted }}</p>
                     </div>
-                    <df-button text="Adicionar gol" [small]="true"></df-button>
+                    <df-button *ngIf="!isFinished" text="Adicionar gol" (click)="goalDialog()" [small]="true"></df-button>
                 </div>
             </div>
         </div>
-
+        <div class="finish">
+            <span (click)="finishMatch()" *ngIf="!isFinished" class="material-icons not-finished">send</span>
+            <span *ngIf="isFinished" class="material-icons finished">done_all</span>
+        </div>
     </df-wrapper>
 
 </div>

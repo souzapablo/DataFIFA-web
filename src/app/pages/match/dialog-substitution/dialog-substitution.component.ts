@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IPlayer } from 'src/app/shared/interfaces/IPlayer';
 import { ISubstitution } from 'src/app/shared/interfaces/ISubstitution';
 import { MatchService } from 'src/app/shared/services/match.service';
+import { PlayerService } from 'src/app/shared/services/player.service';
 
 @Component({
   selector: 'app-dialog-substitution',
@@ -13,7 +14,7 @@ import { MatchService } from 'src/app/shared/services/match.service';
 export class DialogSubstitutionComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
-  private matchService: MatchService) { }
+  private matchService: MatchService, private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.getPlayers();
@@ -27,7 +28,7 @@ export class DialogSubstitutionComponent implements OnInit {
   })
 
   getPlayers() {
-    this.matchService.getPlayersForSubstitution(1, 2).subscribe(
+    this.playerService.getPlayersForSubstitution(1, 2).subscribe(
       (response: IPlayer[]) => {
         this.players = response;
       });

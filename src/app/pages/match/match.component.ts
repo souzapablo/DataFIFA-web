@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IMatchDetails } from 'src/app/shared/interfaces/IMatchDetails';
 import { IOpponentGoals } from 'src/app/shared/interfaces/IOpponentGoals';
 import { MatchService } from 'src/app/shared/services/match.service';
+import { DialogGoalComponent } from './dialog-goal/dialog-goal.component';
 import { DialogSubstitutionComponent } from './dialog-substitution/dialog-substitution.component';
 
 @Component({
@@ -15,7 +16,7 @@ export class MatchComponent implements OnInit {
   constructor(private matchService: MatchService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getMatch(2);
+    this.getMatch(this.matchIdp);
   }
 
   match!: IMatchDetails;
@@ -23,13 +24,15 @@ export class MatchComponent implements OnInit {
   homeLogo: string = '';
   awayTeam: string = '';
   awayLogo: string = '';
-  matchIdp: number = 2;
+  matchIdp: number = 1;
+  isFinished: boolean = false;
 
   getMatch(matchId: number) {
     this.matchService.getById(matchId).subscribe(
       (response: IMatchDetails) => {
         if (response !== null) {
           this.match = response;
+          this.isFinished = this.match.hasEnded;
           if (this.match.isHome) {
             this.homeLogo = this.match.teamLogoUrl;
             this.awayLogo = this.match.opponentLogoUrl;
@@ -67,5 +70,19 @@ export class MatchComponent implements OnInit {
         
       }
     })
+  }
+
+  goalDialog() {
+    let dialogRef = this.dialog.open(DialogGoalComponent, {data: {id: this.matchIdp}})
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "true") {
+        
+      }
+    })
+  }
+
+  finishMatch() {
+    this.matchService.patchEndMatch(2).subscribe()
   }
 }

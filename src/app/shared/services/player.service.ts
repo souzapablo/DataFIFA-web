@@ -11,19 +11,29 @@ export class PlayerService {
 
   constructor(private http: HttpClient) { }
 
+  serviceUrl: string = `${environment.apiUrl}/players`;
+
   getAllPlayers(){
-    return this.http.get<IPlayer[]>(`${environment.apiUrl}/players`);
+    return this.http.get<IPlayer[]>(this.serviceUrl);
   }
 
   getPlayersByTeamId(teamId: number) {
-    return this.http.get<IPlayer[]>(`${environment.apiUrl}/players/team/${teamId}`);
+    return this.http.get<IPlayer[]>(`${this.serviceUrl}/team/${teamId}`);
   }
 
+  getPlayersForSubstitution(teamId: number, matchId:number) {
+    return this.http.get<IPlayer[]>(`${this.serviceUrl}/${teamId}/${matchId}/substitution`)
+  }
+
+  getPlayersByMatch(matchId: number) {
+    return this.http.get<IPlayer[]>(`${this.serviceUrl}/match/${matchId}`)
+  }
   getPostitions() {
-    return this.http.get<IPosition[]>(`${environment.apiUrl}/players/player-positions`);
+    return this.http.get<IPosition[]>(`${this.serviceUrl}/player-positions`);
   }
 
   postPlayer(payload: IPlayer) {
-    return this.http.post(`${environment.apiUrl}/players`, payload);
+    return this.http.post(this.serviceUrl, payload);
   }
+  
 }

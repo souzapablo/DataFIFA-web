@@ -1,0 +1,38 @@
+<div class="df-goal-dialog">
+
+    <mat-dialog-actions>
+        <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
+    </mat-dialog-actions>
+
+    <h2 mat-dialog-title class="title">Adicionar gol</h2>
+
+    <mat-dialog-content>
+        <form [formGroup]="goalForm">
+            <mat-label>Autor do gol</mat-label>
+            <mat-select formControlName="playerScoredId">
+                <mat-option (onSelectionChange)="filterPlayers(player)" *ngFor="let player of lineup" [value]="player.playerId">
+                    {{ player.name }}
+                </mat-option>
+            </mat-select>
+
+            <mat-checkbox *ngIf="scorerPicked" (change)="toggleAssist()">
+                Assistência
+            </mat-checkbox>
+
+            <div *ngIf="hasAssist">
+                <mat-label>Autor da assistência</mat-label>
+                <mat-select formControlName="playerAssistedId">
+                    <mat-option (onSelectionChange)="filterPlayers(player)" *ngFor="let player of playersToAssist" [value]="player.playerId">
+                        {{ player.name }}
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div></div>
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <df-button [small]=true (click)="patchGoal()" text="Adicionar" mat-button mat-dialog-close mat-dialog-close="true">
+        </df-button>
+    </mat-dialog-actions>
+</div>

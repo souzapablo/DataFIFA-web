@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPostMatch } from 'src/app/pages/match-list/interfaces/IPostMatch';
 import { environment } from 'src/environments/environment';
+import { IGoal } from '../interfaces/IGoal';
 import { IMatch } from '../interfaces/IMatch';
 import { IMatchDetails } from '../interfaces/IMatchDetails';
 import { IOpponentGoals } from '../interfaces/IOpponentGoals';
@@ -16,31 +17,37 @@ export class MatchService {
 
   constructor(private http: HttpClient) { }
 
+  serviceUrl: string = `${environment.apiUrl}/matches`
+
   getMatches() {
-    return this.http.get<IMatch[]>(`${environment.apiUrl}/matches`)
+    return this.http.get<IMatch[]>(this.serviceUrl)
   }
 
   getById(matchId: number) {
-    return this.http.get<IMatchDetails>(`${environment.apiUrl}/matches/${matchId}`)
+    return this.http.get<IMatchDetails>(`${this.serviceUrl}/${matchId}`)
   }
 
   deleteMatch(matchId: number) {
-    return this.http.delete(`${environment.apiUrl}/matches/${matchId}`)
+    return this.http.delete(`${this.serviceUrl}/${matchId}`)
   }
 
   postMatch(payload: IPostMatch) {
-    return this.http.post(`${environment.apiUrl}/matches`, payload);
+    return this.http.post(this.serviceUrl, payload);
   }
 
   patchOpponentGoals(matchId: number, payload: IOpponentGoals) {
-    return this.http.patch(`${environment.apiUrl}/matches/${matchId}/opponent-goal`, payload)
+    return this.http.patch(`${this.serviceUrl}/${matchId}/opponent-goal`, payload)
   }
 
-  getPlayersForSubstitution(teamId: number, matchId:number) {
-    return this.http.get<IPlayer[]>(`${environment.apiUrl}/matches/${teamId}/${matchId}/substitution`)
+  patchGoal(matchId: number, payload: IGoal) {
+    return this.http.patch(`${this.serviceUrl}/${matchId}/goal`, payload);
   }
 
   patchSubstitution(matchId: number, paylod: ISubstitution) {
-    return this.http.patch(`${environment.apiUrl}/matches/${matchId}/substitution`, paylod);
+    return this.http.patch(`${this.serviceUrl}/${matchId}/substitution`, paylod);
+  }
+
+  patchEndMatch(matchId: number) {
+    return this.http.patch(`${this.serviceUrl}/${matchId}/end-match`, null);
   }
 }

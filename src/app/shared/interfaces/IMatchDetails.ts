@@ -9,6 +9,7 @@ export interface IMatchDetails {
     stadium: string;
     score: string;
     isHome: boolean;
+    hasEnded: boolean;
     matchGoals: IGoal[];
     lineUp: string[];
 }
