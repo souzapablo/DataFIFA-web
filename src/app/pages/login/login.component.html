@@ -8,15 +8,15 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Nome de usuário</mat-label>
                 <input matInput formControlName="userName">
-                <mat-error *ngIf="isInvalid('userName','required')">{{ msg.required }}</mat-error>
-                <mat-error *ngIf="isInvalid('userName','minlength')">{{ msg.min3 }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'userName','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'userName','minlength')">{{ msg.min3 }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
                 <mat-label>Senha</mat-label>
                 <input type="password" matInput formControlName="password">
-                <mat-error *ngIf="isInvalid('password','required')">{{ msg.required }}</mat-error>
-                <mat-error *ngIf="isInvalid('password','minlength')">{{ msg.min8 }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'password','required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'password','minlength')">{{ msg.min8 }}</mat-error>
             </mat-form-field>
 
             <df-button text="Entrar">

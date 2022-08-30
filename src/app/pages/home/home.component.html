@@ -1,6 +1,23 @@
 <div class="df-home">
     <df-wrapper type="one-col">
 
+        <div class="team">
+            <div class="logo-name">
+                <img [src]="team.teamLogoUrl">
+                <p class="name">{{team.name}}</p>
+            </div>
+            <p>Partidas disputadas : {{ team.played }}</p>
+            <div class="stadium">
+                <div class="stadium-content">
+                    <span class="material-icons">
+                        stadium
+                    </span>
+                    {{ team.stadium }}
+                </div>
+            </div>
+
+        </div>
+
         <div class="cards">
             <mat-card class="card" (click)="redirectTo('partidas')">
                 Partidas

@@ -16,14 +16,16 @@ export class OpponentComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.teamId = Number(localStorage.getItem("teamId"));
     this.getValues();
   }
 
+  teamId: number = 0;
   isLoadingTable: boolean = false;
   opponents: IOpponent[] = [];
 
   getValues() {
-    this.opponentService.getOpponents().subscribe(
+    this.opponentService.getOpponentsByTeam(this.teamId).subscribe(
       (response: IOpponent[]) => {
         this.opponents = response;
       }

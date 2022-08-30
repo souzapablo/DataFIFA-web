@@ -15,6 +15,10 @@ export class OpponentService {
     return this.http.get<IOpponent[]>(`${environment.apiUrl}/opponents`)
   }
 
+  getOpponentsByTeam(teamId: number){
+    return this.http.get<IOpponent[]>(`${environment.apiUrl}/opponents/by-team/${teamId}`)
+  }
+
   postOpponent(payload: IPostOpponent) {
     return this.http.post(`${environment.apiUrl}/opponents`, payload)
   }

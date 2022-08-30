@@ -23,6 +23,10 @@ export class MatchService {
     return this.http.get<IMatch[]>(this.serviceUrl)
   }
 
+  getTeamMatches(teamId: number) {
+    console.log(`${this.serviceUrl}/by-team/${teamId}}`)
+    return this.http.get<IMatch[]>(`${this.serviceUrl}/by-team/${teamId}`)
+  }
   getById(matchId: number) {
     return this.http.get<IMatchDetails>(`${this.serviceUrl}/${matchId}`)
   }

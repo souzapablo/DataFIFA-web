@@ -11,6 +11,7 @@ export class CareerService {
 
   constructor(private http: HttpClient) { }
 
+
   getUsersCareer(userId: number) {
     return this.http.get<ICareer[]>(`${environment.apiUrl}/careers/by-user/${userId}`);
   }

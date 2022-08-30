@@ -1,4 +1,4 @@
-<div class="df-player-dialog">
+<div class="df-player-dialog">isInvalid
     <mat-dialog-actions>
         <button class="close" mat-button mat-dialog-close mat-dialog-close="false">x</button>
     </mat-dialog-actions>
@@ -9,25 +9,25 @@
                 <mat-form-field appearance="legacy">
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="name">
-                    <mat-error *ngIf="isInvalid('name','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createPlayerForm, 'name','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="legacy">
                     <mat-label>Idade</mat-label>
                     <input matInput type="number" min="15" max="45" formControlName="age">
-                    <mat-error *ngIf="isInvalid('age','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createPlayerForm, 'age','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="legacy">
                     <mat-label>Overall</mat-label>
                     <input matInput type="number" min="1" max="99" formControlName="overallRating">
-                    <mat-error *ngIf="isInvalid('overallRating','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createPlayerForm, 'overallRating','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="legacy">
                     <mat-label>Número da camiseta</mat-label>
                     <input matInput type="number" min="1" max="99" formControlName="kitNumber">
-                    <mat-error *ngIf="isInvalid('kitNumber','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createPlayerForm, 'kitNumber','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
 
                 <mat-label>Posição</mat-label>

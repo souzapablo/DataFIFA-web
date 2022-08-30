@@ -1,6 +1,21 @@
 .df-home {
 
-
+    .team {
+        padding-top: 32px;
+        >.logo-name {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            >.name {
+                font-size: calc(var(--df-font-size-base) + 20px);
+                font-weight: 800;
+            }
+            img {
+                height: 80px;
+                width: 80px;
+            }
+        }
+    }
     .cards {
         display: flex;
         align-items: center;

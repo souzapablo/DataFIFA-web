@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Helpers } from 'src/app/shared/utils/helpers';
 import { msg } from 'src/app/shared/utils/msg';
 import Swal from 'sweetalert2';
 import { CareerService } from '../services/career.service';
@@ -19,6 +20,7 @@ export class DialogCreateCareerComponent implements OnInit {
   }
 
   msg = msg;
+  helpers = Helpers;
 
   createCareerForm: FormGroup = this.fb.group({
     userId: this.data.id,
@@ -41,14 +43,5 @@ export class DialogCreateCareerComponent implements OnInit {
         })
       }
     );
-  }
-
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.createCareerForm.get(inputName);
-
-    if (formControl.errors !== null) {
-      return formControl.errors[validatorName] && formControl.touched;
-    }
   }
 }

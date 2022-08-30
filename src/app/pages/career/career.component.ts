@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ICareer } from './interfaces/ICareer';
 import { CareerService } from './services/career.service';
-import { MatDialog
- } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogCreateCareerComponent } from './dialog-create-career/dialog-create-career.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-career',
@@ -24,7 +24,7 @@ export class CareerComponent implements OnInit {
   isLoadingTable = true;
 
   getUserCareers() {
-    this.careerService.getUsersCareer(1).subscribe(
+    this.careerService.getUsersCareer(Number(localStorage.getItem("userId"))).subscribe(
       (response: ICareer[]) => {
         this.careers = response;
         this.isLoadingTable = false;
@@ -45,13 +45,13 @@ export class CareerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "true"){
-        this.redirectTo('career-created')
+        this.getUserCareers()
       } 
     });
   }
 
-  redirectTo(url: string) {
-    console.log(url)
+  redirectTo(url: string, teamId: number) {
+    environment.teamId = teamId;
     this.router.navigateByUrl(url);
   }
 
@@ -62,12 +62,4 @@ export class CareerComponent implements OnInit {
     });
   }
   
-  redirectToWithParams(url: string, id: number) {
-    const dataParams: NavigationBehaviorOptions = {
-      state: {
-        id: id
-      }
-    };
-    this.router.navigate([`${url}/`], dataParams)
-  }
 }

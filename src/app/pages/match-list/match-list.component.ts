@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { IMatch } from '../../shared/interfaces/IMatch';
 import { MatchService } from '../../shared/services/match.service';
 import { DialogCreateMatchComponent } from './dialog-create-match/dialog-create-match.component';
@@ -13,17 +14,19 @@ import { DialogCreateMatchComponent } from './dialog-create-match/dialog-create-
 export class MatchListComponent implements OnInit {
 
   constructor(private matchService: MatchService, private router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+     }
 
   matchList: IMatch[] = [];
   isLoadingTable: boolean = true;
+  teamId: number = environment.teamId;
 
   ngOnInit(): void {
     this.getMatches();
   }
 
   getMatches() {
-    this.matchService.getMatches().subscribe(
+    this.matchService.getTeamMatches(this.teamId).subscribe(
       (response: IMatch[]) => {
         this.matchList = response;
         this.isLoadingTable = false;
@@ -40,15 +43,17 @@ export class MatchListComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogCreateMatchComponent, {data: {id: 1}})
+    let dialogRef = this.dialog.open(DialogCreateMatchComponent, {data: {id: this.teamId}})
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "true"){
+        this.getMatches();
       } 
     });
   }
 
-  redirectTo(url: string) {
+  redirectTo(url: string, matchId: number) {
+    environment.matchId = matchId;
     this.router.navigateByUrl(url);
   }
 

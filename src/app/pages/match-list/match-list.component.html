@@ -35,8 +35,8 @@
                         <div class="score">{{ match.score }}</div>
 
                         <div class="actions">
-                            <span *ngIf="!match.hasEnded" class="edit material-icons">edit</span>
-                            <span *ngIf="match.hasEnded" class="edit material-icons">info</span>
+                            <span *ngIf="!match.hasEnded" (click)="redirectTo('partida', match.matchId)" class="edit material-icons">edit</span>
+                            <span *ngIf="match.hasEnded" (click)="redirectTo('partida', match.matchId)" class="edit material-icons">info</span>
                             <span class="delete material-icons" (click)="deleteMatch(match.matchId)">delete_outline</span>
                         </div>
                     </div>

@@ -9,25 +9,25 @@
                 <mat-form-field appearance="legacy">
                     <mat-label>Nome do treinador</mat-label>
                     <input matInput formControlName="managerName">
-                    <mat-error *ngIf="isInvalid('managerName','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createCareerForm, 'managerName','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="legacy">
                     <mat-label>Nome do time</mat-label>
                     <input matInput formControlName="teamName">
-                    <mat-error *ngIf="isInvalid('teamName','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createCareerForm,'teamName','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="legacy">
                     <mat-label>Nome do estádio</mat-label>
                     <input matInput formControlName="teamStadium">
-                    <mat-error *ngIf="isInvalid('teamStadium','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createCareerForm, 'teamStadium','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="legacy">
                     <mat-label>Logo do time</mat-label>
                     <input matInput formControlName="teamLogoURl">
-                    <mat-error *ngIf="isInvalid('teamLogoURl','required')">{{ msg.required }}</mat-error>
+                    <mat-error *ngIf="helpers.isInvalid(createCareerForm,'teamLogoURl','required')">{{ msg.required }}</mat-error>
                 </mat-form-field>
             </div>
         </form>

@@ -12,7 +12,7 @@
 
             <mat-label>Adversário</mat-label>
             <mat-select formControlName="opponentId" class="df-input">
-                <mat-option mat-dialog-close (click)="redirectTo('opponents')">
+                <mat-option mat-dialog-close (click)="redirectTo('adversarios')">
                     Adicionar novo
                 </mat-option>
                 <mat-option *ngFor="let opponent of opponents" [value]="opponent.opponentId">

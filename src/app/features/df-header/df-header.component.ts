@@ -17,13 +17,12 @@ export class DfHeaderComponent implements OnInit {
 
   buildHeader() {
     if (this.checkIfUserIsLogged()) {
-      this.user.name = localStorage.getItem("name") || '';
-      this.user.role = localStorage.getItem("role") || '';
+      this.user.name = localStorage.getItem("userName") || '';
     }
   }
 
   checkIfUserIsLogged(): boolean {
-    return localStorage.getItem("userName") !== null && localStorage.getItem("role") !== null;
+    return localStorage.getItem("userName") !== null;
   }
 
 }

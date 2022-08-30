@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Helpers } from 'src/app/shared/utils/helpers';
 import { msg } from 'src/app/shared/utils/msg';
 import Swal from 'sweetalert2';
 import { ILogin } from './interfaces/ILogin';
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   msg = msg;
+  helpers = Helpers;
+
   loginForm: FormGroup = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(8)]]
@@ -30,25 +33,19 @@ export class LoginComponent implements OnInit {
       let payload: ILogin = this.loginForm.value;
 
       this.loginService.login(payload).subscribe(
-        (response) => {
+        (response: any) => {
           Swal.fire({
             title: "Tudo certo!",
             text: "Login realizado com sucesso!",
             icon: 'success',
             confirmButtonText: 'Ok!'
           }).then((result) => {
-            this.router.navigateByUrl('career');
+            if (result.isConfirmed) {
+              this.router.navigateByUrl('carreiras');
+            }
         })
         }
       )
-    }
-  }
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.loginForm.get(inputName);
-
-    if (formControl.errors !== null) {
-      return formControl.errors[validatorName] && formControl.touched;
     }
   }
 }

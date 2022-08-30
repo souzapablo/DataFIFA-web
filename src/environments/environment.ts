@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7059/api/v1'
+  apiUrl: 'https://localhost:7059/api/v1',
+  token: 'token',
+  teamId: 0,
+  matchId: 0
 };
 
 /*

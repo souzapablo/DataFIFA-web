@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IMatch } from 'src/app/shared/interfaces/IMatch';
-import { IMatchDetails } from 'src/app/shared/interfaces/IMatchDetails';
 import { IPlayer } from 'src/app/shared/interfaces/IPlayer';
 import { MatchService } from 'src/app/shared/services/match.service';
 import { PlayerService } from 'src/app/shared/services/player.service';
@@ -18,9 +16,11 @@ export class DialogGoalComponent implements OnInit {
   private playerService: PlayerService, private matchService: MatchService) { }
 
   ngOnInit(): void {
+    this.matchId = Number(localStorage.getItem("matchId"));
     this.getLineUp();
   }
 
+  matchId: number = 0;
   lineup: IPlayer[] = [];
   scorerPicked: boolean = false;
   hasAssist: boolean = false;
@@ -32,7 +32,7 @@ export class DialogGoalComponent implements OnInit {
   })
 
   getLineUp() {
-    this.playerService.getPlayersByMatch(2).subscribe(
+    this.playerService.getPlayersByMatch(this.matchId).subscribe(
       (response: IPlayer[]) => {
         this.lineup = response;
       }
@@ -56,6 +56,6 @@ export class DialogGoalComponent implements OnInit {
   patchGoal() {
     let payload = this.goalForm.value;
 
-    this.matchService.patchGoal(2, payload).subscribe()
+    this.matchService.patchGoal(this.matchId, payload).subscribe()
   }
 }

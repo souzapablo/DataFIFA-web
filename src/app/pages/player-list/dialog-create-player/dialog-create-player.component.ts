@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IPosition } from 'src/app/shared/interfaces/IPosition';
 import { PlayerService } from 'src/app/shared/services/player.service';
+import { Helpers } from 'src/app/shared/utils/helpers';
 import { msg } from 'src/app/shared/utils/msg';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,10 +19,12 @@ export class DialogCreatePlayerComponent implements OnInit {
   private playerService: PlayerService) { }
 
   ngOnInit(): void {
+    console.log(environment.teamId)
     this.getValues();
   }
   
   msg = msg;
+  helpers = Helpers;
   positions: IPosition[] = [];
 
   createPlayerForm: FormGroup = this.fb.group({
@@ -29,7 +33,7 @@ export class DialogCreatePlayerComponent implements OnInit {
     overallRating: [1, [Validators.required]],
     kitNumber: [1, Validators.required],
     position: [0, Validators.required],
-    teamId: [this.data.id]
+    teamId: [environment.teamId]
   });
 
   createPlayer() {
@@ -57,13 +61,5 @@ export class DialogCreatePlayerComponent implements OnInit {
         this.positions = response;
       }
     )
-  }
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.createPlayerForm.get(inputName);
-
-    if (formControl.errors !== null) {
-      return formControl.errors[validatorName] && formControl.touched;
-    }
   }
 }

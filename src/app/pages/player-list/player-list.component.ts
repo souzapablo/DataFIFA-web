@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
 import { IPlayer } from 'src/app/shared/interfaces/IPlayer';
 import { PlayerService } from 'src/app/shared/services/player.service';
+import { environment } from 'src/environments/environment';
 import { DialogCreatePlayerComponent } from './dialog-create-player/dialog-create-player.component';
 
 @Component({
@@ -27,7 +28,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   getPlayers() {
-    this.playerService.getPlayersByTeamId(1).subscribe(
+    this.playerService.getPlayersByTeamId(environment.teamId).subscribe(
       (response: IPlayer[]) => {
         this.playerList = response;
         this.isLoadingTable = false;
@@ -35,7 +36,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogCreatePlayerComponent, {data: {id: 1}})
+    let dialogRef = this.dialog.open(DialogCreatePlayerComponent, {data: {id: environment.teamId}})
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "true"){

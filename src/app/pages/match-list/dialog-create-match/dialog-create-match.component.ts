@@ -10,6 +10,7 @@ import { MatchService } from 'src/app/shared/services/match.service';
 import { OpponentService } from 'src/app/shared/services/opponent-service.service';
 import { PlayerService } from 'src/app/shared/services/player.service';
 import { msg } from 'src/app/shared/utils/msg';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { IPostMatch } from '../interfaces/IPostMatch';
 
@@ -30,7 +31,7 @@ export class DialogCreateMatchComponent implements OnInit {
     opponentId: [0, Validators.required],
     lineUpId: [this.lineUp, Validators.required],
     isHome: [false],
-    teamId: 1
+    teamId: environment.teamId
   })
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
@@ -39,11 +40,12 @@ export class DialogCreateMatchComponent implements OnInit {
   private router: Router) { }
 
   ngOnInit(): void {
+    this.teamId = Number(localStorage.getItem("teamId"));
     this.getValues();
   }
 
   msg = msg;
-  
+  teamId: number = 0;
   getValues() {
     this.opponentService.getOpponents().subscribe(
       (response: IOpponent[]) => {
@@ -56,7 +58,7 @@ export class DialogCreateMatchComponent implements OnInit {
         this.competitions = response;
       });
 
-    this.playerService.getAllPlayers().subscribe(
+    this.playerService.getPlayersByTeamId(this.teamId).subscribe(
       (response: IPlayer[]) => {
         this.players = response;
       });
